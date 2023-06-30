@@ -1,0 +1,33 @@
+import requests
+import json
+
+def get_weather(city, api_key):
+    base_url = "http://api.openweathermap.org/data/2.5/forecast"
+    params = {
+        "q": city,
+        "appid": api_key,
+        "units": "metric",
+        "cnt": 7
+    }
+
+    response = requests.get(base_url, params=params)
+    data = response.json()
+
+    # Check if the API request was successful
+    if response.status_code == 200:
+        # Extract and display the weather information
+        for forecast in data['list']:
+            date_time = forecast['dt_txt']
+            temperature = forecast['main']['temp']
+            weather_description = forecast['weather'][0]['description']
+
+            print(f"{date_time}: {temperature}°C, {weather_description}")
+    else:
+        print(f"Error: {data['message']}")
+
+api_key = fdb6f0238e533abe4172825e9f5174c3
+
+# Enter the city for which you want to fetch the weather report
+city = input("Enter the city: ")
+
+get_weather(city, api_key)
