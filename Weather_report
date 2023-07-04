@@ -4,7 +4,7 @@ import json
 def get_weather(city, api_key):
     base_url = "http://api.openweathermap.org/data/2.5/forecast"
     params = {
-        "q": city,
+        "q": f"{city},{state}",
         "appid": api_key,
         "units": "metric",
         "cnt": 7
@@ -28,6 +28,7 @@ def get_weather(city, api_key):
 api_key = fdb6f0238e533abe4172825e9f5174c3
 
 # Enter the city for which you want to fetch the weather report
+state = input("Enter the state: ")
 city = input("Enter the city: ")
 
 get_weather(city, api_key)
