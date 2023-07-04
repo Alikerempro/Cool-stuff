@@ -6,7 +6,7 @@ def get_weather(city, api_key):
     params = {
         "q": f"{city},{state}",
         "appid": api_key,
-        "units": "metric",
+        "units": "imperial",
         "cnt": 8
     }
 
@@ -21,7 +21,7 @@ def get_weather(city, api_key):
             temperature = forecast['main']['temp']
             weather_description = forecast['weather'][0]['description']
 
-            print(f"{date_time}: {temperature}°C, {weather_description}")
+            print(f"{date_time}: {temperature}°F, {weather_description}")
     else:
         print(f"Error: {data['message']}")
 
