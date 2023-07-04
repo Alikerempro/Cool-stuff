@@ -7,7 +7,7 @@ def get_weather(city, api_key):
         "q": f"{city},{state}",
         "appid": api_key,
         "units": "metric",
-        "cnt": 5
+        "cnt": 8
     }
 
     response = pip._vendor.requests.get(base_url, params=params)
