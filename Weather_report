@@ -1,4 +1,4 @@
-import requests
+import pip._vendor.requests
 import json
 
 def get_weather(city, api_key):
@@ -7,10 +7,10 @@ def get_weather(city, api_key):
         "q": f"{city},{state}",
         "appid": api_key,
         "units": "metric",
-        "cnt": 7
+        "cnt": 5
     }
 
-    response = requests.get(base_url, params=params)
+    response = pip._vendor.requests.get(base_url, params=params)
     data = response.json()
 
     # Check if the API request was successful
@@ -25,7 +25,7 @@ def get_weather(city, api_key):
     else:
         print(f"Error: {data['message']}")
 
-api_key = fdb6f0238e533abe4172825e9f5174c3
+api_key = '07f5ba036453b6a1cd3210ba276b2cea'
 
 # Enter the city for which you want to fetch the weather report
 state = input("Enter the state: ")
