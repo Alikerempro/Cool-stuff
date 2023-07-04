@@ -55,13 +55,15 @@ client = discord.Client(intents=intents)
 @client.event
 async def on_ready():
     print(f"logged in as {client.user}")
-
+#discord commands
 @client.event
 async def on_message(message):
+  
     if message.author == client.user:
         return
-
+#command to call the bot
     if message.content.startswith("!weather"):
+        #records state
         await message.channel.send("Enter the state: ")
 
         def check_state(m):
@@ -69,7 +71,7 @@ async def on_message(message):
 
         state_msg = await client.wait_for("message", check=check_state, timeout=60)
         state = state_msg.content
-
+        #records city
         await message.channel.send("Enter the city: ")
 
         def check_city(m):
@@ -77,9 +79,9 @@ async def on_message(message):
 
         city_msg = await client.wait_for("message", check=check_city, timeout=60)
         city = city_msg.content
-
+        #calls get_weather function
         weather_info = get_weather(city, state, api_key)
-
+        #sends weather information for the next 24 hours.
         if isinstance(weather_info, str):
             await message.channel.send(weather_info)
         else:
